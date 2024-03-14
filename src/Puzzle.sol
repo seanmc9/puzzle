@@ -9,6 +9,7 @@ contract Puzzle is Ownable {
     string public description;
 
     error OnlyOwnerCanPutPrizeMoneyIn();
+    error IncorrectAnswer();
 
     constructor(bytes32 root_, string memory description_) payable Ownable() {
         root = root_;
@@ -32,6 +33,7 @@ contract Puzzle is Ownable {
     }
 
     function solve(string memory answer) public {
-        if (keccak256(abi.encodePacked(answer)) == root) Address.sendValue(payable(msg.sender), address(this).balance);
+        if (!(keccak256(abi.encodePacked(answer)) == root)) revert IncorrectAnswer();
+        Address.sendValue(payable(msg.sender), address(this).balance);
     }
 }
