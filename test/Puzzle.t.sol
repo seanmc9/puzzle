@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-pragma solidity ^0.8.23;
+pragma solidity ^0.8.19;
 
 import {Test, console2} from "@forge-std/Test.sol";
 import {Puzzle} from "../src/Puzzle.sol";

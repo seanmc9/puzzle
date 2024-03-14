@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.19;
 
 import "@openzeppelin/utils/Address.sol";
 import "@openzeppelin/access/Ownable.sol";
@@ -8,7 +8,7 @@ contract Puzzle is Ownable {
     bytes32 public root;
     string public description;
 
-    constructor(bytes32 root_, string memory description_) Ownable(msg.sender) payable {
+    constructor(bytes32 root_, string memory description_) Ownable() payable {
         root = root_;
         description = description_;
     }
