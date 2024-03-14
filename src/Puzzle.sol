@@ -8,9 +8,15 @@ contract Puzzle is Ownable {
     bytes32 public root;
     string public description;
 
-    constructor(bytes32 root_, string memory description_) Ownable() payable {
+    error OnlyOwnerCanPutPrizeMoneyIn();
+
+    constructor(bytes32 root_, string memory description_) payable Ownable() {
         root = root_;
         description = description_;
+    }
+
+    receive() external payable {
+        if (msg.sender != owner()) revert OnlyOwnerCanPutPrizeMoneyIn();
     }
 
     function updateRoot(bytes32 newRoot_) public onlyOwner {
