@@ -13,14 +13,16 @@ contract Puzzle is Ownable {
         description = description_;
     }
 
-    receive() external payable {}
-
     function updateRoot(bytes32 newRoot_) public onlyOwner {
         root = newRoot_;
     }
 
     function updateDescription(string memory newDescription_) public onlyOwner {
         description = newDescription_;
+    }
+
+    function withdraw() public onlyOwner {
+        Address.sendValue(payable(owner()), address(this).balance);
     }
 
     function solve(string memory answer) public {
